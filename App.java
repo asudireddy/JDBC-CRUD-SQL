@@ -114,10 +114,10 @@ public class App {
 
     public static void updateStudent(){
 
-        int StudtendID = 24;
-        String LastName = "Sudireddy";
-        String FirstName = "Venkat Reddy";
-        int Grade = 12;
+        int StudtendID = 12;
+        String LastName = "Park";
+        String FirstName = "Giselle";
+        int Grade = 9;
 
         String conncetionString = "jdbc:sqlserver://DESKTOP-K98SKOS\\\\SQLEXPRESS01:1433;Database=Ananya;user=admin1;password=admin1;encrypt=true;trustServerCertificate=true";
             try{
@@ -125,14 +125,14 @@ public class App {
                    System.out.println("Connection established");
                    System.out.println("A new user has been inserted successfully");
                    String sql = "UPDATE dbo.Student SET StudtentID = ?, LastName = ?, FirstName = ? WHERE Grade = ? ";
-                   Statement statement = connection.createStatement();
-                   ((PreparedStatement) statement).setInt(1,StudtendID);
-                   ((PreparedStatement) statement).setString(2, LastName);
-                   ((PreparedStatement) statement).setString(3, FirstName);
-                   ((PreparedStatement) statement).setInt(4, Grade);
+                   PreparedStatement statement = connection.prepareStatement(sql);
+                   statement.setInt(1,StudtendID);
+                   statement.setString(2, LastName);
+                   statement.setString(3, FirstName);
+                   statement.setInt(4, Grade);
                    
 
-                  int rows =  statement.executeUpdate(sql);
+                  int rows =  statement.executeUpdate();
 
                   if(rows > 0){
                     System.out.println("The user's information has been updated");
